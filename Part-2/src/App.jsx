@@ -8,12 +8,11 @@ const API_KEY = "b1fdbd176939093fefcb8a7889e02474";
 
 const App = () => {
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState("Mumbai"); // Default city
+  const [city, setCity] = useState("Mumbai");
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        // Step 1: Get lat and lon for the city
         const locationResponse = await axios.get(
           `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
         );
@@ -26,7 +25,6 @@ const App = () => {
 
         const { lat, lon } = locationResponse.data[0];
 
-        // Step 2: Fetch weather data using lat & lon
         const weatherResponse = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
         );
