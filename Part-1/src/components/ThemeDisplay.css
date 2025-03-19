@@ -1,0 +1,27 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .light {
+    background: #f0f0f0;
+    color: #333;
+  }
+  
+  .dark {
+    background: #333;
+    color: #f0f0f0;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+  }
+  
