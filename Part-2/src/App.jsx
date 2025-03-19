@@ -13,10 +13,25 @@ const App = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        // Step 1: Get lat and lon for the city
+        const locationResponse = await axios.get(
+          `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
         );
-        setWeather(response.data);
+
+        if (locationResponse.data.length === 0) {
+          console.error("City not found");
+          setWeather(null);
+          return;
+        }
+
+        const { lat, lon } = locationResponse.data[0];
+
+        // Step 2: Fetch weather data using lat & lon
+        const weatherResponse = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+        );
+
+        setWeather(weatherResponse.data);
       } catch (error) {
         console.error("Error fetching weather data:", error);
         setWeather(null);
