@@ -6,6 +6,7 @@ const WeatherDisplay = ({ weather }) => {
   const { name, main, weather: details } = weather;
 
   return (
+    
     <div className="weather-container">
       <h2>{name}</h2>
       <p>Temperature: {main.temp}°C</p>
